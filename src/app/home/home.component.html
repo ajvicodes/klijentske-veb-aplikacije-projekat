@@ -3,10 +3,27 @@
     <p style="color: red">{{error}}</p>
 
 </div>
-<div *ngIf="movies">
-    <p *ngFor="let movie of movies">{{movie.runTime}} {{movie.startDate}}</p>
-    <pre>{{movies | json}}</pre>
+<div *ngIf="movies" class="container">
+    <mat-card class="movie-card" appearance="outlined" *ngFor="let movie of movies">
+  <img mat-card-image [src]="movie.poster" alt="movie poster">
+  <mat-card-content>
+    <h1>{{movie.originalTitle}}</h1>
+    <p></p>
+    <p>Runtime: {{movie.runTime}} minutes</p>
+    <p>Synopsis: {{movie.shortDescription}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+            <a mat-button [routerLink]="['/details/', movie.movieId]">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Details
+            </a>
+            <a mat-button [routerLink]="['/details/'+movie.movieId+'/order']">
+                <i class="fa-solid fa-cart-shopping"></i> Reservation
+            </a>
+        </mat-card-actions>
+</mat-card>
+
 </div>
 <div *ngIf="!movies && !error" >
     <p>Data is loading...</p>
 </div>
+

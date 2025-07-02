@@ -1,0 +1,35 @@
+<div *ngIf="movie">
+    <mat-card class="order-card" appearance="outlined">
+        <img mat-card-image [src]="movie.poster" alt="movie poster">
+        <mat-card-content>
+            <h3>New Order - {{movie.originalTitle}}</h3>
+            <mat-form-field class="full-width">
+                <mat-label>Movie</mat-label>
+                <input type="text" matInput [value]="movie.originalTitle" disabled>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Runtime</mat-label>
+                <input type="text" matInput [value]="movie.runTime" disabled>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+
+                <mat-label>Ticket Count</mat-label>
+                <input type="number" matInput [(ngModel)]="selectedTicketCount"> 
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+  <mat-label>Select Projection</mat-label>
+  <mat-select [(value)]="selectedProjectionId" (selectionChange)="onProjectionChange()">
+    <mat-option *ngFor="let projection of projections" [value]="projection.id">
+      {{ projection.date }} {{ projection.time }} — {{ projection.ticketPrice }} RSD
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+            
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="doOrder()">
+                <i class="fa-solid fa-cart-shopping"></i> Make reservation
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

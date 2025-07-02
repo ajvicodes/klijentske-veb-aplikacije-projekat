@@ -1,0 +1,74 @@
+<div class="wrapper" *ngIf="movie">
+  <h1>{{ movie.originalTitle }}</h1>
+  <div class="movie-content">
+    <img [src]="movie.poster" alt="movie poster" />
+    <mat-card class="movie-card" appearance="outlined">
+      <mat-card-content>
+        <h2>Movie Details</h2>
+        <mat-list role="list">
+          <mat-list-item>
+            <span matListItemTitle>Runtime:</span>
+            <span matListItemLine>{{ movie.runTime }} minutes</span>
+            <span matListItemIcon>
+              <i class="fa-solid fa-clock"></i>
+            </span>
+          </mat-list-item>
+
+          <mat-list-item>
+            <span matListItemTitle>Director:</span>
+            <span matListItemLine>{{ movie.director?.name }}</span>
+            <span matListItemIcon>
+              <i class="fa-solid fa-user"></i>
+            </span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle>Genres:</span>
+            <span matListItemLine>
+              <span *ngFor="let mg of movie.movieGenres; let last = last">
+                {{ mg.genre.name }}{{ last ? '' : ', ' }}
+              </span>
+            </span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle>Actors:</span>
+            <span matListItemLine>
+              <span *ngFor="let ma of movie.movieActors; let last = last">
+                {{ ma.actor.name }}{{ last ? '' : ', ' }}
+              </span>
+            </span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle>Start Date:</span>
+            <span matListItemLine>{{ movie.startDate | date: 'dd.MM.yyyy' }}</span>
+          </mat-list-item>
+          <mat-list-item *ngIf="projection">
+            <span matListItemTitle>Projection Date & Time:</span>
+            <span matListItemLine>{{ projection.projectionDate }} {{ projection.projectionTime }}</span>
+          </mat-list-item>
+
+
+          <mat-list-item>
+            <span matListItemTitle>Description:</span>
+            <span matListItemLine>{{ movie.description }}</span>
+          </mat-list-item>
+
+          <mat-list-item>
+            <span matListItemTitle>Start Date:</span>
+            <span matListItemLine>{{ movie.startDate | date:'dd.MM.yyyy' }}</span>
+          </mat-list-item>
+          <mat-list-item *ngIf="projection">
+            <span matListItemTitle>Ticket Price:</span>
+            <span matListItemLine>{{ projection.ticketPrice }} RSD</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button [routerLink]="['/details/' + movie.movieId + '/order']">
+          <i class="fa-solid fa-cart-shopping"></i> Make reservation
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+<app-loading *ngIf="!movie"></app-loading>

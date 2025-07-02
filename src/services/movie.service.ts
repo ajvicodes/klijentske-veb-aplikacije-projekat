@@ -30,7 +30,7 @@ export class MovieService {
             }
         })
     }
-    static async getMoviesbyId(id: number) {
-        return client.get(`/movie/${id}`) //drugi nacin pisanja sa tmplt tagovima
+    static async getMoviesbyId(movieId: number) {
+        return client.get(`/movie/${movieId}`) //drugi nacin pisanja sa tmplt tagovima
     }
 }

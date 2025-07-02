@@ -1,0 +1,29 @@
+.movie-card {
+    min-width: 49%;
+}
+
+.movie-content {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.movie-content img {
+    max-width: 49%;
+    border-radius: 12px;
+}
+
+
+
+@media only screen and (max-width: 950px) {
+    .movie-card {
+        min-width: 100%;
+    }
+
+    .movie-content img {
+        max-width: 100%;
+    }
+}

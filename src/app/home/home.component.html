@@ -1,0 +1,12 @@
+<div *ngIf="error">
+    <p>Ooops, an error occured!</p>
+    <p style="color: red">{{error}}</p>
+
+</div>
+<div *ngIf="movies">
+    <p *ngFor="let movie of movies">{{movie.runTime}} {{movie.startDate}}</p>
+    <pre>{{movies | json}}</pre>
+</div>
+<div *ngIf="!movies && !error" >
+    <p>Data is loading...</p>
+</div>

@@ -34,7 +34,8 @@ import { MovieService } from '../../services/movie.service';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  public displayedColumns: string[] = ['movieId', 'title', 'flightNumber', 'count', 'price', 'total', 'status', 'actions'];
+  // Fixed displayedColumns to match the actual columns in HTML
+  public displayedColumns: string[] = ['id', 'movie', 'date', 'count', 'price', 'total', 'status', 'actions'];
   public user: UserModel | null = null
   public userCopy: UserModel | null = null
   public movieList: string[] = []
@@ -45,20 +46,28 @@ export class UserComponent {
 
   constructor(private router: Router) {
     if (!UserService.getActiveUser()) {
-      // Korisnik aplikacije nije ulogovan
-      // Vrati korisnika na homepage
+      // User is not logged in
+      // Redirect to homepage
       router.navigate(['/home'])
       return
     }
 
     this.user = UserService.getActiveUser()
-    this.userCopy = UserService.getActiveUser()
+    this.userCopy = JSON.parse(JSON.stringify(UserService.getActiveUser())) // Deep copy
+    
+    // Debug: Check if user has orders
+    console.log('=== USER ORDERS DEBUG ===');
+    console.log('User:', this.user);
+    console.log('User orders:', this.user?.orders);
+    console.log('Orders length:', this.user?.orders?.length);
+    console.log('========================');
+    
     MovieService.getMovies()
       .then(rsp => this.movieList = rsp.data)
   }
 
   public doChangePassword() {
-    if (this.oldPasswordValue == '' || this.newPasswordValue == null) {
+    if (this.oldPasswordValue == '' || this.newPasswordValue == '') {
       alert('Password cant be empty')
       return
     }

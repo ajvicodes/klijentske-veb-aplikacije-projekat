@@ -16,14 +16,14 @@
                 <mat-label>Ticket Count</mat-label>
                 <input type="number" matInput [(ngModel)]="selectedTicketCount"> 
             </mat-form-field>
-            <mat-form-field appearance="fill">
-  <mat-label>Select Projection</mat-label>
-  <mat-select [(value)]="selectedProjectionId" (selectionChange)="onProjectionChange()">
-    <mat-option *ngFor="let projection of projections" [value]="projection.id">
-      {{ projection.date }} {{ projection.time }} — {{ projection.ticketPrice }} RSD
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Select Projection</mat-label>
+                <mat-select [(value)]="selectedProjectionId" (selectionChange)="onProjectionChange()">
+                    <mat-option *ngFor="let projection of projections" [value]="projection.id">
+                        {{ projection.projectionDate }} {{ projection.projectionTime }} — {{ projection.ticketPrice }} RSD
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
             
         </mat-card-content>
         <mat-card-actions>

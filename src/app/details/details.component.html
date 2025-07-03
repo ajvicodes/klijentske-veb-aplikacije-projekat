@@ -39,7 +39,7 @@
           </mat-list-item>
           <mat-list-item>
             <span matListItemTitle>Start Date:</span>
-            <span matListItemLine>{{ movie.startDate | date: 'dd.MM.yyyy' }}</span>
+            <span matListItemLine>{{utils.formatDate(movie.startDate)}}</span>
           </mat-list-item>
           <mat-list-item *ngIf="projection">
             <span matListItemTitle>Projection Date & Time:</span>
@@ -52,10 +52,6 @@
             <span matListItemLine>{{ movie.description }}</span>
           </mat-list-item>
 
-          <mat-list-item>
-            <span matListItemTitle>Start Date:</span>
-            <span matListItemLine>{{ movie.startDate | date:'dd.MM.yyyy' }}</span>
-          </mat-list-item>
           <mat-list-item *ngIf="projection">
             <span matListItemTitle>Ticket Price:</span>
             <span matListItemLine>{{ projection.ticketPrice }} RSD</span>
